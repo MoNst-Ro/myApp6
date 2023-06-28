@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   template: `
-  <div class="card">
-    <div class="card-header">Title</div>
-    <div class="card-body">Content</div>
-  </div>
+    <div class="card mb-3">
+      <div class="card-header" (click)="opened = !opened">
+        {{title}}
+      </div>
+      <div class="card-body" *ngIf="opened">
+        <ng-content></ng-content>
+      </div>
+    </div>
   `,
-  styles: []
+  styles: [
+  ]
 })
 export class CardComponent {
+  @Input() title: string = 'untitled';
+  opened = false;
 
 }
